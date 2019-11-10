@@ -1,6 +1,8 @@
 import 'dart:io';
-
 import 'package:dart_console/dart_console.dart';
+
+import 'token.dart';
+import 'scanner.dart';
 
 bool hadError = false;
 
@@ -38,7 +40,7 @@ void run(String source) {
   List<Token> tokens = scanner.scanTokens();
 
   for (final token in tokens) {
-    console.writeLine(token);
+    console.writeLine(token.toString());
   }
 }
 
