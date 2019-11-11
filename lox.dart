@@ -48,7 +48,7 @@ void run(String source) {
 
   if (hadError) return;
 
-  console.write(AstPrinter().print(expr));
+  console.writeLine(AstPrinter().print(expr));
 }
 
 void error(int line, String message) {
@@ -56,6 +56,6 @@ void error(int line, String message) {
 }
 
 void report(int line, String where, String message) {
-  stderr.write('[line $line] Error$where: $message');
+  stderr.writeln('[line $line] Error$where: $message');
   hadError = true;
 }
