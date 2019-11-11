@@ -3,6 +3,8 @@ import 'package:dart_console/dart_console.dart';
 
 import 'token.dart';
 import 'scanner.dart';
+import 'parser.dart';
+import 'astPrinter.dart';
 
 bool hadError = false;
 
@@ -41,10 +43,12 @@ void runPrompt() {
 void run(String source) {
   final scanner = Scanner(source);
   List<Token> tokens = scanner.scanTokens();
+  final parser = Parser(tokens);
+  final expr = parser.parse();
 
-  for (final token in tokens) {
-    console.writeLine(token.toString());
-  }
+  if (hadError) return;
+
+  console.write(AstPrinter().print(expr));
 }
 
 void error(int line, String message) {
@@ -52,6 +56,6 @@ void error(int line, String message) {
 }
 
 void report(int line, String where, String message) {
-  stderr.write('[line $line] Error $where: $message');
+  stderr.write('[line $line] Error$where: $message');
   hadError = true;
 }
