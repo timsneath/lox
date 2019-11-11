@@ -68,7 +68,11 @@ class Scanner {
         break;
       case '/':
         if (match('/')) {
+          // double-slash comment style
           while (peek() != '\n' && !isAtEnd()) advance();
+        } else if (match('*')) {
+          // traditional /* ... */ comment style
+          while (!(match('*') && match('/'))) advance();
         } else {
           addToken(TokenType.slash);
         }

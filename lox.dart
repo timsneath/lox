@@ -28,7 +28,7 @@ void runFile(String path) {
 }
 
 void runPrompt() {
-  for (;;) {
+  while (true) {
     console.write('> ');
     final input = console.readLine(cancelOnBreak: true);
     if (input == null) exit(0); // handle Ctrl+C
@@ -52,6 +52,6 @@ void error(int line, String message) {
 }
 
 void report(int line, String where, String message) {
-  stderr.write('[line $line] Error$where: $message');
+  stderr.write('[line $line] Error $where: $message');
   hadError = true;
 }
