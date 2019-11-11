@@ -137,9 +137,9 @@ class Parser {
 
   ParseError error(Token token, String message) {
     if (token.type == TokenType.eof) {
-      report(token.line, ' at end ', message);
+      reportError(token.line, ' at end ', message);
     } else {
-      report(token.line, " at '${token.lexeme}'", message);
+      reportError(token.line, " at '${token.lexeme}'", message);
     }
 
     return ParseError();

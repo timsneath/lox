@@ -94,7 +94,7 @@ class Scanner {
         } else if (isAlpha(c)) {
           identifier();
         } else {
-          error(line, 'Unexpected character.');
+          reportError(line, '', 'Unexpected character.');
         }
         break;
     }
@@ -133,7 +133,7 @@ class Scanner {
 
     // Unterminated string
     if (isAtEnd()) {
-      error(line, 'Unterminated string.');
+      reportError(line, '', 'Unterminated string.');
       return;
     }
 

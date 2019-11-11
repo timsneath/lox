@@ -4,9 +4,11 @@ import 'package:dart_console/dart_console.dart';
 import 'token.dart';
 import 'scanner.dart';
 import 'parser.dart';
-import 'astPrinter.dart';
+import 'interpreter.dart';
 
+final interpreter = Interpreter();
 bool hadError = false;
+bool hadRuntimeError = false;
 
 final console = Console();
 
@@ -27,6 +29,7 @@ void runFile(String path) {
   run(file);
 
   if (hadError) exit(65);
+  if (hadRuntimeError) exit(70);
 }
 
 void runPrompt() {
@@ -48,14 +51,15 @@ void run(String source) {
 
   if (hadError) return;
 
-  console.writeLine(AstPrinter().print(expr));
+  interpreter.interpret(expr);
 }
 
-void error(int line, String message) {
-  report(line, "", message);
+void reportRuntimeError(RuntimeError error) {
+  stderr.writeln('${error.message} [line ${error.token.line}]');
+  hadRuntimeError = true;
 }
 
-void report(int line, String where, String message) {
+void reportError(int line, String where, String message) {
   stderr.writeln('[line $line] Error$where: $message');
   hadError = true;
 }
