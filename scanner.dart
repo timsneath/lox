@@ -169,7 +169,8 @@ class Scanner {
 
   bool isAlphanumeric(String c) => isAlpha(c) || isDigit(c);
 
-  bool isDigit(String c) => "0".compareTo(c) <= 0 && "9".compareTo(c) >= 0;
+  bool isDigit(String c) =>
+      "0".compareTo(c) <= 0 && "9".compareTo(c) >= 0 && c != '\0';
 
   bool isAtEnd() => current >= source.length;
 
