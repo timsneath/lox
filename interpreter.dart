@@ -15,7 +15,7 @@ class Interpreter extends Visitor<Object> {
     try {
       final value = evaluate(expr);
       console.writeLine(value == null ? 'nil' : value.toString());
-    } catch (error) {
+    } on RuntimeError catch (error) {
       reportRuntimeError(error);
     }
   }
@@ -28,13 +28,13 @@ class Interpreter extends Visitor<Object> {
     switch (expr.op.type) {
       case TokenType.minus:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) - double.parse(right);
+        return (left as double) - (right as double);
       case TokenType.slash:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) / double.parse(right);
+        return (left as double) / (right as double);
       case TokenType.star:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) * double.parse(right);
+        return (left as double) * (right as double);
       case TokenType.plus:
         if (left is String && right is String) {
           return left + right;
@@ -46,16 +46,16 @@ class Interpreter extends Visitor<Object> {
             expr.op, 'Operands must be two numbers or two strings.');
       case TokenType.greater:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) > double.parse(right);
+        return (left as double) > (right as double);
       case TokenType.greaterEqual:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) >= double.parse(right);
+        return (left as double) >= (right as double);
       case TokenType.less:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) < double.parse(right);
+        return (left as double) < (right as double);
       case TokenType.lessEqual:
         checkNumberOperands(expr.op, left, right);
-        return double.parse(left) <= double.parse(right);
+        return (left as double) <= (right as double);
       case TokenType.bangEqual:
         return !isEqual(left, right);
       case TokenType.equalEqual:
