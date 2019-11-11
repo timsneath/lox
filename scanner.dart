@@ -122,7 +122,7 @@ class Scanner {
       while (isDigit(peek())) advance();
     }
 
-    addToken(TokenType.number, num.parse(source.substring(start, current)));
+    addToken(TokenType.number, double.parse(source.substring(start, current)));
   }
 
   void string() {
