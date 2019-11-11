@@ -153,12 +153,12 @@ class Scanner {
   }
 
   String peek() {
-    if (isAtEnd()) return '\0';
+    if (isAtEnd()) return null;
     return source[current];
   }
 
   String peekNext() {
-    if (current + 1 >= source.length) return '\0';
+    if (current + 1 >= source.length) return null;
     return source[current + 1];
   }
 
@@ -170,7 +170,7 @@ class Scanner {
   bool isAlphanumeric(String c) => isAlpha(c) || isDigit(c);
 
   bool isDigit(String c) =>
-      "0".compareTo(c) <= 0 && "9".compareTo(c) >= 0 && c != '\0';
+      ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(c);
 
   bool isAtEnd() => current >= source.length;
 
