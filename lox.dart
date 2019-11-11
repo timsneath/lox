@@ -30,7 +30,10 @@ void runFile(String path) {
 void runPrompt() {
   for (;;) {
     console.write('> ');
-    run(console.readLine());
+    final input = console.readLine(cancelOnBreak: true);
+    if (input == null) exit(0); // handle Ctrl+C
+
+    run(input);
     hadError = false;
   }
 }

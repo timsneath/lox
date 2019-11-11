@@ -4,3 +4,6 @@
 .dart_tool/
 .packages
 build/
+
+# For now, ignore any test files
+*.lox
