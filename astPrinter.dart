@@ -1,6 +1,4 @@
 import 'generated/expr.dart';
-// import 'token.dart';
-// import 'tokenType.dart';
 
 class AstPrinter extends Visitor<String> {
   String print(Expr expr) => expr.accept(this);
@@ -31,10 +29,3 @@ class AstPrinter extends Visitor<String> {
     return output;
   }
 }
-
-// void main() {
-//   Expr expr = Binary(Unary(Token(TokenType.minus, '-', null, 1), Literal(123)),
-//       Token(TokenType.star, '*', null, 1), Grouping(Literal(45.67)));
-
-//   print(AstPrinter().print(expr));
-// }
