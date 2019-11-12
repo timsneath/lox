@@ -15,7 +15,12 @@ main(List<String> args) {
     "Binary   : Expr left, Token op, Expr right",
     "Grouping : Expr expression",
     "Literal  : Object value",
-    "Unary    : Token op, Expr right"
+    "Unary    : Token op, Expr right",
+  ]);
+
+  defineAst(outputDir, "Stmt", [
+    "Expression : Expr expression",
+    "Print      : Expr expression",
   ]);
 }
 
