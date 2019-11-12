@@ -14,7 +14,7 @@ final console = Console();
 
 void main(List<String> args) {
   if (args.length > 1) {
-    console.writeLine('Usage lox [script]');
+    console.writeLine('Usage: lox [script]');
     exit(64);
   } else if (args.length == 1) {
     runFile(args[0]);
